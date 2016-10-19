@@ -1,7 +1,7 @@
-[![](https://jitpack.io/v/ninty90/Bruce.svg)](https://jitpack.io/#ninty90/Bruce)
+[![](https://jitpack.io/v/CPPAlien/Bruce.svg)](https://jitpack.io/#CPPAlien/Bruce)
 
 # Bruce
-程曦Android应用开发规范库
+Android应用主题库
 
 ###导入方法
 ```
@@ -13,7 +13,7 @@ allprojects {
 }
 
 dependencies {
-        compile 'com.github.ninty90:Bruce:0.0.3'
+        compile 'com.github.CPPAlien:Bruce:0.0.8'
 }
 ```
 
