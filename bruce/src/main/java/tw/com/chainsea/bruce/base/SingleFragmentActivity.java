@@ -75,12 +75,13 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     }
 
     @SuppressWarnings("unused")
-    protected void finishLoading(boolean isSuccess) {
+    protected void finishLoading(boolean isSuccess, String extraInfo) {
         mIvLoading.setVisibility(View.GONE);
         if ( !isSuccess ) {
             TextView tvNoData = (TextView)findViewById(R.id.bruce_no_data);
             assert tvNoData != null;
             tvNoData.setVisibility(View.VISIBLE);
+            if ( extraInfo != null ) tvNoData.setText(extraInfo);
         }
     }
 
