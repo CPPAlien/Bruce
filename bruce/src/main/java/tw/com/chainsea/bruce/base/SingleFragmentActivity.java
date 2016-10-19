@@ -1,9 +1,13 @@
 package tw.com.chainsea.bruce.base;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import tw.com.chainsea.bruce.R;
 
@@ -61,12 +65,32 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         }
     }
 
+    private ImageView mIvLoading;
+    @SuppressWarnings("unused")
+    protected void enableLoading() {
+        mIvLoading = (ImageView)findViewById(R.id.bruce_loading);
+        assert mIvLoading != null;
+        mIvLoading.setVisibility(View.VISIBLE);
+        ((AnimationDrawable) mIvLoading.getBackground()).start();
+    }
+
+    @SuppressWarnings("unused")
+    protected void finishLoading(boolean isSuccess) {
+        mIvLoading.setVisibility(View.GONE);
+        if ( !isSuccess ) {
+            TextView tvNoData = (TextView)findViewById(R.id.bruce_no_data);
+            assert tvNoData != null;
+            tvNoData.setVisibility(View.VISIBLE);
+        }
+    }
+
     /**
      * 获得当前fragment，在配置更改时，activity会被重新创建
      * fragment也会被重新创建，但此时fragment已经存在于FragmentManager中，activity重新创建后会从中直接取fragment然后attach
      * 提供此方法目的，是让上层Activity在配置变化后可以调用fragment方法
      * @return fragment
      */
+    @SuppressWarnings("unused")
     protected Fragment getFragment(){
         return manager.findFragmentById(R.id.fragmentContainer);
     }
