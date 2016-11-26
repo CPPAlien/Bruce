@@ -14,4 +14,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="列表风格窗口"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/toast_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toast Success"/>
+        <Button
+            android:id="@+id/toast_failed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toast Failed"/>
+    </LinearLayout>
+
 </LinearLayout>

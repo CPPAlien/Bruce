@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import tw.com.chainsea.bruce.dialog.ListDialog;
 import tw.com.chainsea.bruce.dialog.YesNoDialog;
+import tw.com.chainsea.bruce.util.BruceToast;
 
 /**
  *
@@ -24,6 +25,8 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
         view.findViewById(R.id.dialog_confirm).setOnClickListener(this);
         view.findViewById(R.id.dialog_list).setOnClickListener(this);
+        view.findViewById(R.id.toast_success).setOnClickListener(this);
+        view.findViewById(R.id.toast_failed).setOnClickListener(this);
         return view;
     }
 
@@ -70,6 +73,12 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                     }
                 });
                 listDialog.show();
+                break;
+            case R.id.toast_success:
+                BruceToast.makeText(getContext(), "这是成功的toast方法", true, BruceToast.LENGTH_SHORT).show();
+                break;
+            case R.id.toast_failed:
+                BruceToast.makeText(getContext(), "这是失败的toast方法", false, BruceToast.LENGTH_SHORT).show();
                 break;
         }
     }

@@ -65,18 +65,18 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
         }
     }
 
-    private ImageView mIvLoading;
     @SuppressWarnings("unused")
     protected void enableLoading() {
-        mIvLoading = (ImageView)findViewById(R.id.bruce_loading);
-        assert mIvLoading != null;
-        mIvLoading.setVisibility(View.VISIBLE);
-        ((AnimationDrawable) mIvLoading.getBackground()).start();
+        ImageView ivLoading = (ImageView)findViewById(R.id.bruce_loading);
+        assert ivLoading != null;
+        ivLoading.setVisibility(View.VISIBLE);
+        ((AnimationDrawable) ivLoading.getBackground()).start();
     }
 
     @SuppressWarnings("unused")
     protected void finishLoading(boolean isSuccess, String extraInfo) {
-        mIvLoading.setVisibility(View.GONE);
+        ImageView ivLoading = (ImageView)findViewById(R.id.bruce_loading);
+        assert ivLoading != null;
         if ( !isSuccess ) {
             TextView tvNoData = (TextView)findViewById(R.id.bruce_no_data);
             assert tvNoData != null;
