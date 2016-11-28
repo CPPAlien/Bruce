@@ -1,5 +1,6 @@
 package tw.com.chainsea.bruce_example;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import tw.com.chainsea.bruce.base.BruceConstant;
 import tw.com.chainsea.bruce.dialog.ListDialog;
 import tw.com.chainsea.bruce.dialog.YesNoDialog;
 import tw.com.chainsea.bruce.util.BruceToast;
@@ -27,6 +31,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.dialog_list).setOnClickListener(this);
         view.findViewById(R.id.toast_success).setOnClickListener(this);
         view.findViewById(R.id.toast_failed).setOnClickListener(this);
+        view.findViewById(R.id.image_view_example).setOnClickListener(this);
         return view;
     }
 
@@ -79,6 +84,14 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.toast_failed:
                 BruceToast.makeText(getContext(), "这是失败的toast方法", false, BruceToast.LENGTH_SHORT).show();
+                break;
+            case R.id.image_view_example:
+                Intent intent = new Intent(getContext(), ExamplePicViewer.class);
+                ArrayList<String> list = new ArrayList<>();
+                list.add("http://e.hiphotos.baidu.com/image/pic/item/dcc451da81cb39db02807657d2160924ab18306a.jpg");
+                list.add("http://g.hiphotos.baidu.com/image/pic/item/503d269759ee3d6d1b54569a41166d224e4aded5.jpg");
+                intent.putExtra(BruceConstant.INTENT_IMAGE_URLS, list);
+                startActivity(intent);
                 break;
         }
     }

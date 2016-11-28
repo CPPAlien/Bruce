@@ -77,6 +77,7 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
     protected void finishLoading(boolean isSuccess, String extraInfo) {
         ImageView ivLoading = (ImageView)findViewById(R.id.bruce_loading);
         assert ivLoading != null;
+        ivLoading.setVisibility(View.GONE);
         if ( !isSuccess ) {
             TextView tvNoData = (TextView)findViewById(R.id.bruce_no_data);
             assert tvNoData != null;

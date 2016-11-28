@@ -21,8 +21,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import cn.hadcn.davinci.DaVinci;
-import cn.hadcn.davinci.image.base.ImageEntity;
 import tw.com.chainsea.bruce.R;
 import tw.com.chainsea.bruce.dialog.ListDialog;
 import tw.com.chainsea.bruce.view.HackyViewPager;
@@ -39,6 +37,7 @@ public class ImageViewerFragment extends DialogFragment {
     private int mCurrentPos = 0;
     private ImageView[] mImageViews;
     private int totalPages = 0;
+    private ImageLoadListener mListener;
 
     final static String INTENT_URLS = "urls";
     final static String INTENT_POSITION = "pos";
@@ -112,7 +111,7 @@ public class ImageViewerFragment extends DialogFragment {
                     getActivity().overridePendingTransition(R.anim.bruce_fade_in, R.anim.bruce_zoom_exit);
                 }
             });
-            DaVinci.with(getActivity()).getImageLoader().load(mImageUrls.get(position)).into(photoView);
+            mListener.loadImage(mImageUrls.get(position), photoView);
 
             photoView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -156,8 +155,8 @@ public class ImageViewerFragment extends DialogFragment {
     }
 
     private void afterPicLongClick(String url) {
-        ImageEntity entity = DaVinci.with(getActivity()).getImageLoader().getImage(url);
-        final Bitmap bitmap = entity.getBitmap();
+
+        final Bitmap bitmap = mListener.fetchImage(url);
         ListDialog listDialog = new ListDialog(getActivity());
         listDialog.addItem(getActivity().getString(R.string.bruce_save_to_phone), new ListDialog.ListAction() {
             @Override
@@ -201,5 +200,14 @@ public class ImageViewerFragment extends DialogFragment {
             c.close();
         }
         return filePath;
+    }
+
+    public void setListener(ImageLoadListener listener) {
+        mListener = listener;
+    }
+
+    public interface ImageLoadListener {
+        void loadImage(String url, ImageView view);
+        Bitmap fetchImage(String url);
     }
 }
